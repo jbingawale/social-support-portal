@@ -18,10 +18,7 @@ export default function Step1() {
     control,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      gender: "",
-      ...savedData,
-    },
+    defaultValues: savedData,
   });
 
   useEffect(() => {
@@ -153,9 +150,17 @@ export default function Step1() {
         margin="normal"
       />
 
-      <Button type="submit" variant="contained" aria-label="Go to next step">
-        {t("next")}
-      </Button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "end",
+          marginTop: 24,
+        }}
+      >
+        <Button type="submit" variant="contained" aria-label="Go to next step">
+          {t("next")}
+        </Button>
+      </div>
     </form>
   );
 }

@@ -130,31 +130,31 @@ export default function Step3() {
         />
 
         {/* FINAL SUBMIT BUTTON */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: 24,
+          }}
+        >
+          <Button
+            variant="outlined"
+            onClick={() => dispatch(prevStep())}
+            aria-label="Go to back step"
+            sx={{ mt: 3 }}
+          >
+            {t("back")}
+          </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={submitting}
+            sx={{ mt: 3 }}
+          >
+            {submitting ? t("submitting_application") : t("submit_application")}
+          </Button>
+        </div>
       </form>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: 24,
-        }}
-      >
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(prevStep())}
-          aria-label="Go to back step"
-          sx={{ mt: 3 }}
-        >
-          {t("back")}
-        </Button>
-        <Button
-          type="submit"
-          variant="contained"
-          disabled={submitting}
-          sx={{ mt: 3 }}
-        >
-          {submitting ? "Submitting..." : "Submit Application"}
-        </Button>
-      </div>
     </>
   );
 }

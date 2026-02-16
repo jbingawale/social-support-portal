@@ -17,6 +17,11 @@ const formSlice = createSlice({
       country: "",
       phone: "",
       email: "",
+      maritalStatus: "",
+      dependents: "",
+      employmentStatus: "",
+      monthlyIncome: "",
+      housingStatus: "",
     },
   },
   reducers: {

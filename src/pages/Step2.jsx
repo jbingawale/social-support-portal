@@ -1,5 +1,5 @@
-import { useForm } from "react-hook-form";
-import { TextField, Button } from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
+import { TextField, Button, MenuItem } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { saveData, nextStep, prevStep } from "../redux/formSlice";
 import { useTranslation } from "react-i18next";
@@ -10,6 +10,7 @@ export default function Step2() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     defaultValues: savedData,
@@ -27,26 +28,77 @@ export default function Step2() {
       aria-label="Family & Financial Infromation Form"
       role="form"
     >
+      {/* Marital Status */}
+      <Controller
+        name="maritalStatus"
+        control={control}
+        defaultValue=""
+        rules={{ required: t("marital_status_required") }}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            select
+            label={t("marital_status")}
+            error={!!errors.maritalStatus}
+            helperText={errors.maritalStatus?.message}
+            fullWidth
+            margin="normal"
+          >
+            <MenuItem value="">Select</MenuItem>
+            <MenuItem value="single">Single</MenuItem>
+            <MenuItem value="married">Married</MenuItem>
+            <MenuItem value="divorced">Divorced</MenuItem>
+          </TextField>
+        )}
+      />
+
+      {/* Dependents */}
       <TextField
-        label={t("employment_status")}
-        {...register("employment", {
-          required: "Employment Status is required",
+        type="number"
+        label={t("dependents")}
+        {...register("dependents", {
+          required: t("dependents_required"),
         })}
-        error={!!errors.employment}
-        helperText={errors.employment?.message}
-        slotProps={{
-          htmlInput: {
-            "aria-label": "Employment Status",
-          },
-        }}
+        error={!!errors.dependents}
+        helperText={errors.dependents?.message}
         fullWidth
         margin="normal"
       />
+
+      {/* Employment Status */}
+      <Controller
+        name="employmentStatus"
+        control={control}
+        defaultValue=""
+        rules={{ required: t("employment_status_required") }}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            select
+            label={t("employment_status")}
+            error={!!errors.employmentStatus}
+            helperText={errors.employmentStatus?.message}
+            fullWidth
+            margin="normal"
+          >
+            <MenuItem value="">Select</MenuItem>
+            <MenuItem value="employed">Employed</MenuItem>
+            <MenuItem value="self-employed">Self Employed</MenuItem>
+            <MenuItem value="unemployed">Unemployed</MenuItem>
+            <MenuItem value="student">Student</MenuItem>
+          </TextField>
+        )}
+      />
+
+      {/* Monthly Income */}
       <TextField
+        type="number"
         label={t("monthly_income")}
-        {...register("income", { required: "Monthly Income is required" })}
-        error={!!errors.income}
-        helperText={errors.income?.message}
+        {...register("monthlyIncome", {
+          required: t("monthly_income_required"),
+        })}
+        error={!!errors.monthlyIncome}
+        helperText={errors.monthlyIncome?.message}
         slotProps={{
           htmlInput: {
             "aria-label": "Monthly Income",
@@ -55,6 +107,32 @@ export default function Step2() {
         fullWidth
         margin="normal"
       />
+
+      {/* Housing Status */}
+      <Controller
+        name="housingStatus"
+        control={control}
+        defaultValue=""
+        rules={{ required: "Housing Status is required" }}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            select
+            label={t("housing_status")}
+            error={!!errors.housingStatus}
+            helperText={errors.housingStatus?.message}
+            fullWidth
+            margin="normal"
+          >
+            <MenuItem value="">Select</MenuItem>
+            <MenuItem value="own">Own</MenuItem>
+            <MenuItem value="rent">Rent</MenuItem>
+            <MenuItem value="family">Living with Family</MenuItem>
+          </TextField>
+        )}
+      />
+
+      {/* Navigation Buttons */}
       <div
         style={{
           display: "flex",
