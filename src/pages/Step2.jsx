@@ -1,17 +1,19 @@
 import { useForm } from "react-hook-form";
 import { TextField, Button } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveData, nextStep, prevStep } from "../redux/formSlice";
 import { useTranslation } from "react-i18next";
 
 export default function Step2() {
   const { t } = useTranslation();
-
+  const savedData = useSelector((state) => state.form.data);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: savedData,
+  });
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
@@ -53,13 +55,24 @@ export default function Step2() {
         fullWidth
         margin="normal"
       />
-
-      <Button onClick={() => dispatch(prevStep())} aria-label="Go to back step">
-        {t("back")}
-      </Button>
-      <Button type="submit" variant="contained" aria-label="Go to next step">
-        {t("next")}
-      </Button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: 24,
+        }}
+      >
+        <Button
+          variant="outlined"
+          onClick={() => dispatch(prevStep())}
+          aria-label="Go to back step"
+        >
+          {t("back")}
+        </Button>
+        <Button type="submit" variant="contained" aria-label="Go to next step">
+          {t("next")}
+        </Button>
+      </div>
     </form>
   );
 }

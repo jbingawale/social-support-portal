@@ -19,7 +19,7 @@ export default function AIHelpModal({ open, onClose, aiText, onAccept }) {
     <Dialog open={open} fullWidth maxWidth="md">
       <DialogTitle>AI Suggestion</DialogTitle>
 
-      <DialogContent>
+      <DialogContent tabIndex={0}>
         <TextField
           multiline
           rows={6}

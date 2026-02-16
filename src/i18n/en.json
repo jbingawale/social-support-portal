@@ -10,5 +10,8 @@
   "financial_situation": "Financial Situation",
   "employment_circumstances": "Employment Circumstances",
   "reason_applying": "Reason for Applying",
-  "aiSuggestion": "AI Suggestion"
+  "aiSuggestion": "AI Suggestion",
+  "financial_situation_required": "Financial Situation is required",
+  "employment_circumstances_required": "Employment Circumstances required",
+  "reason_applying_required": "Reason for Applying required"
 }
