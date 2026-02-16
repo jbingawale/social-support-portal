@@ -1,0 +1,12 @@
+{
+  "name": "الاسم",
+  "email": "البريد الإلكتروني",
+  "phone": "الهاتف",
+  "next": "التالي",
+  "back": "رجوع",
+  "helpWrite": "ساعدني في الكتابة",
+  "financialSituation": "الوضع المالي",
+  "employmentCircumstances": "ظروف العمل",
+  "reasonApplying": "سبب التقديم",
+  "aiSuggestion": "اقتراح الذكاء الاصطناعي"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone",
+  "next": "Next",
+  "back": "Back",
+  "helpWrite": "Help Me Write",
+  "financialSituation": "Financial Situation",
+  "employmentCircumstances": "Employment Circumstances",
+  "reasonApplying": "Reason for Applying",
+  "aiSuggestion": "AI Suggestion"
+}
