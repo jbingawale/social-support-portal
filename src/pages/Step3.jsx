@@ -3,9 +3,16 @@ import { TextField, Button, CircularProgress } from "@mui/material";
 import { generateText } from "../services/openaiService";
 import { useState } from "react";
 import AIHelpModal from "../components/AIHelpModal";
+import { useTranslation } from "react-i18next";
 
 export default function Step3() {
-  const { register, setValue } = useForm();
+  const { t } = useTranslation();
+
+  const {
+    register,
+    setValue,
+    formState: { errors },
+  } = useForm();
 
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -30,23 +37,43 @@ export default function Step3() {
   return (
     <>
       <TextField
-        label="Financial Situation"
-        {...register("situation")}
+        label={t("financial_situation")}
+        {...register("situation", {
+          required: "Financial Situation is required",
+        })}
+        error={!!errors.situation}
+        helperText={errors.situation?.message}
+        slotProps={{
+          htmlInput: {
+            "aria-label": "Financial Situation",
+          },
+        }}
         multiline
         rows={4}
         fullWidth
+        sx={{ mt: 3 }}
       />
       <Button
         onClick={() =>
           handleAI("situation", "Help me describe my financial hardship")
         }
+        aria-label={loading ? "Loading" : "Go to next step"}
       >
-        {loading ? <CircularProgress size={20} /> : "Help Me Write"}
+        {loading ? <CircularProgress size={20} /> : t("help_write")}
       </Button>
 
       <TextField
-        label="Employment Circumstances"
-        {...register("employmentDesc")}
+        label={t("employment_circumstances")}
+        {...register("employmentDesc", {
+          required: "Employment Circumstances is required",
+        })}
+        error={!!errors.employmentDesc}
+        helperText={errors.employmentDesc?.message}
+        slotProps={{
+          htmlInput: {
+            "aria-label": "Employment Circumstances",
+          },
+        }}
         multiline
         rows={4}
         fullWidth
@@ -56,13 +83,23 @@ export default function Step3() {
         onClick={() =>
           handleAI("employmentDesc", "Describe my employment struggles")
         }
+        aria-label={loading ? "Loading" : "Go to next step"}
       >
-        {loading ? <CircularProgress size={20} /> : "Help Me Write"}
+        {loading ? <CircularProgress size={20} /> : t("help_write")}
       </Button>
 
       <TextField
-        label="Reason for Applying"
-        {...register("reason")}
+        label={t("reason_applying")}
+        {...register("reason", {
+          required: "Reason for Applying is required",
+        })}
+        error={!!errors.reason}
+        helperText={errors.reason?.message}
+        slotProps={{
+          htmlInput: {
+            "aria-label": "Reason for Applying",
+          },
+        }}
         multiline
         rows={4}
         fullWidth
@@ -72,8 +109,9 @@ export default function Step3() {
         onClick={() =>
           handleAI("reason", "Explain why I need financial support")
         }
+        aria-label={loading ? "Loading" : "Go to next step"}
       >
-        {loading ? <CircularProgress size={20} /> : "Help Me Write"}
+        {loading ? <CircularProgress size={20} /> : t("help_write")}
       </Button>
 
       <AIHelpModal

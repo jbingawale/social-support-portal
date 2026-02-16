@@ -4,9 +4,11 @@
   "phone": "Phone",
   "next": "Next",
   "back": "Back",
-  "helpWrite": "Help Me Write",
-  "financialSituation": "Financial Situation",
-  "employmentCircumstances": "Employment Circumstances",
-  "reasonApplying": "Reason for Applying",
+  "employment_status": "Employment Status",
+  "monthly_income": "Monthly Income",
+  "help_write": "Help Me Write",
+  "financial_situation": "Financial Situation",
+  "employment_circumstances": "Employment Circumstances",
+  "reason_applying": "Reason for Applying",
   "aiSuggestion": "AI Suggestion"
 }

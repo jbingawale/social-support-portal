@@ -4,9 +4,11 @@
   "phone": "الهاتف",
   "next": "التالي",
   "back": "رجوع",
-  "helpWrite": "ساعدني في الكتابة",
-  "financialSituation": "الوضع المالي",
-  "employmentCircumstances": "ظروف العمل",
-  "reasonApplying": "سبب التقديم",
+  "employment_status": "الحالة الوظيفية",
+  "monthly_income": "الدخل الشهري",
+  "help_write": "ساعدني في الكتابة",
+  "financial_situation": "الوضع المالي",
+  "employment_circumstances": "ظروف العمل",
+  "reason_applying": "سبب التقديم",
   "aiSuggestion": "اقتراح الذكاء الاصطناعي"
 }
