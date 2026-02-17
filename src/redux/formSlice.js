@@ -22,6 +22,9 @@ const formSlice = createSlice({
       employmentStatus: "",
       monthlyIncome: "",
       housingStatus: "",
+      situation: "",
+      employmentDesc: "",
+      reason: "",
     },
   },
   reducers: {
@@ -35,8 +38,13 @@ const formSlice = createSlice({
     prevStep: (state) => {
       state.step -= 1;
     },
+    resetForm: (state) => {
+      state.step = 1;
+      state.data = {};
+      localStorage.removeItem("formData");
+    },
   },
 });
 
-export const { saveData, nextStep, prevStep } = formSlice.actions;
+export const { saveData, nextStep, prevStep, resetForm } = formSlice.actions;
 export default formSlice.reducer;

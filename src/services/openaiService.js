@@ -2,14 +2,15 @@ import axios from "axios";
 
 export const generateText = async (prompt) => {
   const res = await axios.post(
-    "https://api.openai.com/v1/chat/completions",
+    "https://openrouter.ai/api/v1/chat/completions",
     {
-      model: "gpt-3.5-turbo",
+      model: "mistralai/mistral-7b-instruct",
       messages: [{ role: "user", content: prompt }],
     },
     {
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_KEY}`,
+        Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_KEY}`,
+        "Content-Type": "application/json",
       },
     },
   );

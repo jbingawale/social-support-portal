@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { saveData, prevStep, resetForm } from "../redux/formSlice";
+import { TextField, Button, CircularProgress } from "@mui/material";
+
 import AIHelpModal from "../components/AIHelpModal";
+import SuccessModal from "../components/SuccessModal";
 import { generateText } from "../services/openaiService";
 import { submitApplication } from "../services/apiService";
-import { saveData, prevStep } from "../redux/formSlice";
-import { TextField, Button, CircularProgress } from "@mui/material";
 
 export default function Step3() {
   const { t } = useTranslation();
@@ -27,13 +29,15 @@ export default function Step3() {
   const [aiText, setAiText] = useState("");
   const [currentField, setCurrentField] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
 
   const handleAI = async (fieldName, prompt) => {
     setLoading(true);
     setCurrentField(fieldName);
+    const updatedPrompt = `${prompt}, reply in plain text`;
 
     try {
-      const text = await generateText(prompt);
+      const text = await generateText(updatedPrompt);
       setAiText(text);
       setOpenModal(true);
     } catch {
@@ -55,9 +59,20 @@ export default function Step3() {
 
     await submitApplication(finalData);
 
-    alert("Application Submitted Successfully!");
+    setSuccessOpen(true);
 
     setSubmitting(false);
+  };
+
+  const handleSuccessClose = () => {
+    // Clear redux
+    dispatch(resetForm());
+
+    // Clear localStorage if you persist form
+    localStorage.removeItem("persist:root");
+
+    // Close modal
+    setSuccessOpen(false);
   };
 
   return (
@@ -77,7 +92,12 @@ export default function Step3() {
         />
 
         <Button
-          onClick={() => handleAI("situation", "Describe financial hardship")}
+          onClick={() =>
+            handleAI(
+              "situation",
+              "You help users write short, simple, clear Describe financial hardship, Write in maximum 5–6 short paragraphs. Keep response under 150 words.",
+            )
+          }
         >
           {loading ? <CircularProgress size={20} /> : t("help_write")}
         </Button>
@@ -85,7 +105,7 @@ export default function Step3() {
         <TextField
           label={t("employment_circumstances")}
           {...register("employmentDesc", {
-            required: t("financial_situation_required"),
+            required: t("employment_circumstances_required"),
           })}
           error={!!errors.employmentDesc}
           helperText={errors.employmentDesc?.message}
@@ -97,7 +117,10 @@ export default function Step3() {
 
         <Button
           onClick={() =>
-            handleAI("employmentDesc", "Describe employment struggles")
+            handleAI(
+              "employmentDesc",
+              "You help users write short, simple, clear Describe employment struggles, Write in maximum 5–6 short paragraphs. Keep response under 150 words.",
+            )
           }
         >
           {loading ? <CircularProgress size={20} /> : t("help_write")}
@@ -116,7 +139,10 @@ export default function Step3() {
 
         <Button
           onClick={() =>
-            handleAI("reason", "Explain why financial help is needed")
+            handleAI(
+              "reason",
+              "You help users write short, simple, clear why financial help is needed, Write in maximum 5–6 short paragraphs. Keep response under 150 words.",
+            )
           }
         >
           {loading ? <CircularProgress size={20} /> : t("help_write")}
@@ -128,6 +154,8 @@ export default function Step3() {
           onClose={() => setOpenModal(false)}
           onAccept={(text) => setValue(currentField, text)}
         />
+
+        <SuccessModal open={successOpen} onClose={handleSuccessClose} />
 
         {/* FINAL SUBMIT BUTTON */}
         <div

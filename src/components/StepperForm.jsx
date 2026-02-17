@@ -12,9 +12,8 @@ export default function StepperForm() {
   const progress = (step / 3) * 100;
 
   return (
-    <Box p={4} tabIndex={0} role="region" aria-label="Application Form">
+    <>
       <LinearProgress variant="determinate" value={progress} />
-
       {step === 1 && (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Step1 />
@@ -22,6 +21,6 @@ export default function StepperForm() {
       )}
       {step === 2 && <Step2 />}
       {step === 3 && <Step3 />}
-    </Box>
+    </>
   );
 }

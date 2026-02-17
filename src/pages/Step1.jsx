@@ -42,7 +42,7 @@ export default function Step1() {
     >
       <TextField
         label={t("name")}
-        {...register("name", { required: "Name is required" })}
+        {...register("name", { required: t("name_required") })}
         error={!!errors.name}
         helperText={errors.name?.message}
         fullWidth
@@ -51,8 +51,14 @@ export default function Step1() {
 
       {/* NATIONAL ID */}
       <TextField
-        label="National ID"
-        {...register("nationalId", { required: "National ID required" })}
+        label={t("national_id")}
+        {...register("nationalId", {
+          required: t("national_id_required"),
+          pattern: {
+            value: /^784-\d{4}-\d{7}-\d{1}$/,
+            message: t("invalid_national_id"),
+          },
+        })}
         error={!!errors.nationalId}
         helperText={errors.nationalId?.message}
         fullWidth
@@ -63,39 +69,39 @@ export default function Step1() {
       <RHFDatePicker
         name="dob"
         control={control}
-        label="Date of Birth"
-        rules={{ required: "DOB is required" }}
+        label={t("dob")}
+        rules={{ required: t("dob_required") }}
       />
       {/* GENDER */}
 
       <Controller
         name="gender"
         control={control}
-        rules={{ required: "Select gender" }}
+        rules={{ required: t("gender_required") }}
         render={({ field }) => (
           <TextField
             select
-            label="Gender"
+            label={t("gender")}
             fullWidth
             margin="normal"
             error={!!errors.gender}
             helperText={errors.gender?.message}
             {...field}
           >
-            <MenuItem value="">Select Gender</MenuItem>
-            <MenuItem value="male">Male</MenuItem>
-            <MenuItem value="female">Female</MenuItem>
-            <MenuItem value="other">Other</MenuItem>
+            <MenuItem value="">{t("select_gender")}</MenuItem>
+            <MenuItem value="male">{t("male")}</MenuItem>
+            <MenuItem value="female">{t("female")}</MenuItem>
+            <MenuItem value="other">{t("other")}</MenuItem>
           </TextField>
         )}
       />
 
       {/* ADDRESS */}
       <TextField
-        label="Address"
+        label={t("address")}
         multiline
         rows={3}
-        {...register("address", { required: "Address required" })}
+        {...register("address", { required: t("address_required") })}
         error={!!errors.address}
         helperText={errors.address?.message}
         fullWidth
@@ -104,8 +110,8 @@ export default function Step1() {
 
       {/* CITY */}
       <TextField
-        label="City"
-        {...register("city", { required: "City required" })}
+        label={t("city")}
+        {...register("city", { required: t("city_required") })}
         error={!!errors.city}
         helperText={errors.city?.message}
         fullWidth
@@ -114,8 +120,8 @@ export default function Step1() {
 
       {/* STATE */}
       <TextField
-        label="State"
-        {...register("state", { required: "State required" })}
+        label={t("state")}
+        {...register("state", { required: t("state_required") })}
         error={!!errors.state}
         helperText={errors.state?.message}
         fullWidth
@@ -124,8 +130,8 @@ export default function Step1() {
 
       {/* COUNTRY */}
       <TextField
-        label="Country"
-        {...register("country", { required: "Country required" })}
+        label={t("country")}
+        {...register("country", { required: t("country_required") })}
         error={!!errors.country}
         helperText={errors.country?.message}
         fullWidth
@@ -134,7 +140,7 @@ export default function Step1() {
 
       <TextField
         label={t("email")}
-        {...register("email", { required: "Email required" })}
+        {...register("email", { required: t("email_required") })}
         error={!!errors.email}
         helperText={errors.email?.message}
         fullWidth
@@ -143,7 +149,7 @@ export default function Step1() {
 
       <TextField
         label={t("phone")}
-        {...register("phone", { required: "Phone required" })}
+        {...register("phone", { required: t("phone_required") })}
         error={!!errors.phone}
         helperText={errors.phone?.message}
         fullWidth

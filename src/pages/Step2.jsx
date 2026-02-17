@@ -44,10 +44,10 @@ export default function Step2() {
             fullWidth
             margin="normal"
           >
-            <MenuItem value="">Select</MenuItem>
-            <MenuItem value="single">Single</MenuItem>
-            <MenuItem value="married">Married</MenuItem>
-            <MenuItem value="divorced">Divorced</MenuItem>
+            <MenuItem value="">{t("select")}</MenuItem>
+            <MenuItem value="single">{t("single")}</MenuItem>
+            <MenuItem value="married">{t("married")}</MenuItem>
+            <MenuItem value="divorced">{t("divorced")}</MenuItem>
           </TextField>
         )}
       />
@@ -81,11 +81,11 @@ export default function Step2() {
             fullWidth
             margin="normal"
           >
-            <MenuItem value="">Select</MenuItem>
-            <MenuItem value="employed">Employed</MenuItem>
-            <MenuItem value="self-employed">Self Employed</MenuItem>
-            <MenuItem value="unemployed">Unemployed</MenuItem>
-            <MenuItem value="student">Student</MenuItem>
+            <MenuItem value="">{t("select")}</MenuItem>
+            <MenuItem value="employed">{t("employed")}</MenuItem>
+            <MenuItem value="self-employed">{t("self_employed")}</MenuItem>
+            <MenuItem value="unemployed">{t("unemployed")}</MenuItem>
+            <MenuItem value="student">{t("student")}</MenuItem>
           </TextField>
         )}
       />
@@ -113,7 +113,7 @@ export default function Step2() {
         name="housingStatus"
         control={control}
         defaultValue=""
-        rules={{ required: "Housing Status is required" }}
+        rules={{ required: t("housing_status_required") }}
         render={({ field }) => (
           <TextField
             {...field}
@@ -124,10 +124,10 @@ export default function Step2() {
             fullWidth
             margin="normal"
           >
-            <MenuItem value="">Select</MenuItem>
-            <MenuItem value="own">Own</MenuItem>
-            <MenuItem value="rent">Rent</MenuItem>
-            <MenuItem value="family">Living with Family</MenuItem>
+            <MenuItem value="">{t("select")}</MenuItem>
+            <MenuItem value="own">{t("own")}</MenuItem>
+            <MenuItem value="rent">{t("rent")}</MenuItem>
+            <MenuItem value="family">{t("living_with_family")}</MenuItem>
           </TextField>
         )}
       />
